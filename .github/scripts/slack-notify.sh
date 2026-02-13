@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # ===== Parameters =====
-TYPE=$1        # build | deploy
-STATUS=$2      # success | failed
-PROJECT=$3     # Project name
-BRANCH=$4      # Branch name
-RUN_URL=$5     # GitHub Actions run URL
-ENVIRONMENT=$6 # Optional (prod, staging, etc)
-URL="$7"          # Optional (URL of the deployed project)  
+TYPE=$1
+STATUS=$2
+PROJECT=$3
+BRANCH=$4
+RUN_URL=$5
+ENVIRONMENT=$6
+URL=$7
 
 # ===== Icons & Titles =====
 if [ "$STATUS" = "success" ]; then
@@ -25,20 +25,21 @@ MESSAGE="$ICON $TYPE_UPPER $RESULT
 Project: $PROJECT
 Branch: $BRANCH"
 
-# Include URL if provided
-if [ -n "$PROJECT_URL" ]; then
+# Include Live URL
+if [ -n "$URL" ]; then
   MESSAGE="$MESSAGE
-Live URL: $PROJECT_URL"
+🌐 Live: <$URL|Open Website>"
 fi
 
-
+# Include Environment
 if [ -n "$ENVIRONMENT" ]; then
   MESSAGE="$MESSAGE
 Environment: $ENVIRONMENT"
 fi
 
+# Include Workflow URL (clickable)
 MESSAGE="$MESSAGE
-Run: $RUN_URL"
+Run: <$RUN_URL|View Workflow>"
 
 # ===== Send to Slack =====
 curl -X POST -H 'Content-type: application/json' \
