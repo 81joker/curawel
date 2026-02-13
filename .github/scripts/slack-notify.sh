@@ -26,10 +26,11 @@ Project: $PROJECT
 Branch: $BRANCH"
 
 # Include URL if provided
-if [ -n "$URL" ]; then
+if [ -n "$PROJECT_URL" ]; then
   MESSAGE="$MESSAGE
-URL: $URL"
+Live URL: $PROJECT_URL"
 fi
+
 
 if [ -n "$ENVIRONMENT" ]; then
   MESSAGE="$MESSAGE
