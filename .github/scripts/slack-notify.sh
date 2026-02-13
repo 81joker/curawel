@@ -7,6 +7,7 @@ PROJECT=$3     # Project name
 BRANCH=$4      # Branch name
 RUN_URL=$5     # GitHub Actions run URL
 ENVIRONMENT=$6 # Optional (prod, staging, etc)
+URL="https://curawel.nehaddev.com/
 
 # ===== Icons & Titles =====
 if [ "$STATUS" = "success" ]; then
@@ -23,7 +24,7 @@ TYPE_UPPER=$(echo "$TYPE" | tr '[:lower:]' '[:upper:]')
 MESSAGE="$ICON $TYPE_UPPER $RESULT
 Project: $PROJECT
 Branch: $BRANCH"
-
+Link="URL Project: $URL"
 if [ -n "$ENVIRONMENT" ]; then
   MESSAGE="$MESSAGE
 Environment: $ENVIRONMENT"
